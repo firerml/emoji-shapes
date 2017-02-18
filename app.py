@@ -1,19 +1,13 @@
+import logging
+
 from flask import Flask, Response, jsonify, request
+
+from shapes import make_shape, ShapeException
 
 app = Flask(__name__)
 
-
-def _shapes():
-    return {
-        'box': (lambda emoji: ((emoji*3 + '\n')*3)[:-1])
-    }
-
-
-def make_shape(shape_name, emoji):
-    func = _shapes().get(shape_name)
-    if func:
-        return func(emoji)
-    return ''
+RESPONSE_TYPE_IN_CHANNEL = "in_channel"
+RESPONSE_TYPE_EPHEMERAL = "ephemeral"
 
 
 @app.route('/', methods=['GET'])
@@ -25,10 +19,17 @@ def index():
 def get_shape():
     text_words = request.form['text'].split(' ')
     shape = text_words[0]
-    result = make_shape(shape, text_words[1])
-    if not result:
-        return Response("Invalid args", status=400)
-    return jsonify({"text": result, "response_type": "in_channel"})
 
-if __name__ == "__main__":
+    try:
+        result = make_shape(shape, text_words[1:])
+        response_type = RESPONSE_TYPE_IN_CHANNEL
+    except ShapeException as e:
+        result = e.message
+        response_type = RESPONSE_TYPE_EPHEMERAL
+    if request.args.get('format') == 'text':
+        return result
+    return jsonify({'text': result, 'response_type': response_type})
+
+
+if __name__ == '__main__':
     app.run(debug=True)
