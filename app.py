@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, jsonify, request
 
 app = Flask(__name__)
 
@@ -27,8 +27,8 @@ def get_shape():
     shape = text_words[0]
     result = make_shape(shape, text_words[1])
     if not result:
-        return 'BAD'
-    return Response(result, mimetype='text/plain')
+        return Response("Invalid args", status=400)
+    return jsonify({"text": result, "response_type": "in_channel"})
 
 if __name__ == "__main__":
     app.run(debug=True)
