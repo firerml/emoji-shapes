@@ -23,12 +23,9 @@ def index():
 
 @app.route('/get_shape', methods=['POST'])
 def get_shape():
-    command_words = request.form['command'].split(' ')
-    print(request.form)
-    print(request.form['command'])
-    print(command_words)
-    shape = command_words[1]
-    result = make_shape(shape, command_words[2])
+    text_words = request.form['text'].split(' ')
+    shape = text_words[0]
+    result = make_shape(shape, text_words[1])
     if not result:
         return 'BAD'
     return Response(result, mimetype='text/plain')
