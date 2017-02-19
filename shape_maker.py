@@ -39,14 +39,14 @@ def make_shape(shape_name, emojis):
 
 
 def get_list():
-    message = '*shape: number of emojis to provide*\nExample: `/artmoji box :hamburger: :thumbsup:`\n'
+    message = '*Shape: Number of emojis to provide*\nExample: `/artmoji box :hamburger: :thumbsup:`\n'
     for shape in sorted(SHAPE_CODES.keys()):
         message += '`' + shape + '`:  '
         min_emoji = SHAPE_CODES[shape]['min']
         max_emoji = SHAPE_CODES[shape]['max']
         if min_emoji == max_emoji:
-            message += '{} emoji'.format(min_emoji) + 's' if min_emoji > 1 else ''
+            message += '{}'.format(min_emoji) + 's' if min_emoji > 1 else ''
         else:
-            message += '{}-{} emojis'.format(min_emoji, max_emoji)
+            message += '{}-{}'.format(min_emoji, max_emoji)
         message += '\n'
     return message[:-1]
