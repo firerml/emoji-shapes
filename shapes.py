@@ -10,11 +10,16 @@ class ShapeException(Exception):
 
 
 def make_shape(shape_name, emojis):
-    if not emojis:
-        raise ShapeException('Must provide at least one emoji! Try `/shape box :thumpsup:')
     code = SHAPE_CODES.get(shape_name)
     if not code:
-        raise ShapeException('Invalid shape "%s". Try `/shape list` to see all of the possible shapes)' % shape_name)
+        raise ShapeException(
+            'Invalid shape "%s". Try ```/shape list``` to see all of the possible shapes)' % shape_name
+        )
+    if not emojis:
+        raise ShapeException('Must provide at least one emoji! Try ```/shape box :thumbsup:```')
+    for emoji in emojis:
+        if emoji[0] != ':' and emoji[-1] != ':':
+            raise ShapeException('Emoji names must have colons around them: ```:thumbsup:```')
 
     max_index = len(emojis) - 1
     result = ''

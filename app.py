@@ -1,6 +1,5 @@
-import logging
-
 from flask import Flask, Response, jsonify, request
+import requests
 
 from shapes import make_shape, ShapeException
 
@@ -28,7 +27,8 @@ def get_shape():
         response_type = RESPONSE_TYPE_EPHEMERAL
     if request.args.get('format') == 'text':
         return result
-    return jsonify({'text': result, 'response_type': response_type})
+    requests.post(request.form['response_url'], data={'text': result, 'response_type': response_type})
+    return Response(status=200)
 
 
 if __name__ == '__main__':
