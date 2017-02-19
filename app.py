@@ -1,7 +1,7 @@
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, request
 import requests
 
-from shapes import make_shape, ShapeException
+from shape_maker import make_shape, ShapeException
 
 app = Flask(__name__)
 
@@ -32,4 +32,4 @@ def get_shape():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
