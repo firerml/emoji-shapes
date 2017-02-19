@@ -27,7 +27,7 @@ def get_shape():
         response_type = RESPONSE_TYPE_EPHEMERAL
     if request.args.get('format') == 'text':
         return result
-    requests.post(request.form['response_url'], data={'text': result, 'response_type': response_type})
+    requests.post(request.form['response_url'], json={'text': result, 'response_type': response_type})
     return Response(status=200)
 
 
