@@ -20,9 +20,9 @@ def make_shape(shape_name, emojis):
     if len(emojis) < min_emoji:
         raise ShapeException('Must provide at least {} emoji{}!'.format(min_emoji, 's' if min_emoji > 1 else ''))
 
-    for emoji in emojis:
-        if emoji[0] != ':' and emoji[-1] != ':':
-            raise ShapeException('Emoji names must have colons around them: `:thumbsup:`')
+    # for emoji in emojis:
+    #     if emoji[0] != ':' and emoji[-1] != ':':
+    #         raise ShapeException('Emoji names must have colons around them: `:thumbsup:`')
 
     if not emojis:
         emojis.append(shape_info['default'])
