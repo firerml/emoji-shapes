@@ -4,7 +4,6 @@ SHAPE_CODES = {
     'on_the_can': {'min': 0, 'max': 1, 'default': ':rage1:', 'code': ['0\n   :toilet:']},
     'thumb': {'min': 0, 'max': 1, 'default': ':thumbsup:', 'code': [
         '''.
-                        00
                           00
                           00
                         00
