@@ -16,6 +16,9 @@ def index():
 
 @app.route('/get_shape', methods=['POST'])
 def get_shape():
+
+    print(request.form)
+
     text_words = request.form['text'].split(' ')
     shape = text_words[0]
 
