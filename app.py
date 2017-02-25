@@ -8,8 +8,8 @@ from shape_maker import get_list, make_shape, ShapeException
 
 app = Flask(__name__)
 
-RESPONSE_TYPE_IN_CHANNEL = "in_channel"
-RESPONSE_TYPE_EPHEMERAL = "ephemeral"
+RESPONSE_TYPE_IN_CHANNEL = 'in_channel'
+RESPONSE_TYPE_EPHEMERAL = 'ephemeral'
 
 AUTH_STATE = os.environ.get('ARTMOJI_OAUTH_STATE', '')
 CLIENT_ID = os.environ.get('ARTMOJI_CLIENT_ID', '')
@@ -75,11 +75,12 @@ def get_shape():
 
     if response_type == RESPONSE_TYPE_EPHEMERAL:
         return jsonify({'text': result, 'response_type': response_type})
+    else:
+        # Post on the user's behalf.
+        requests.post('https://slack.com/api/chat.postMessage',
+                      data={'token': user_auth_token, 'channel': request.form['channel_id'], 'text': result},
+                      headers={'Content-Type': 'application/x-www-form-urlencoded'})
 
-    # Post on the user's behalf.
-    requests.post('https://slack.com/api/chat.postMessage', json={
-        'token': user_auth_token, 'channel': request.form['channel_id'], 'text': result
-    })
     return Response(status=200)
 
 
