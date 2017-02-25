@@ -2,22 +2,24 @@
 SHAPE_CODES = {
     'box': {'min': 0, 'max': 3, 'default': ':thumbsup:', 'code': ['>212\n>101\n>212']},
     'on_the_can': {'min': 0, 'max': 1, 'default': ':rage1:', 'code': ['>0\n>   :toilet:']},
-    'thumb': {'min': 0, 'max': 1, 'default': ':thumbsup:', 'code': ['''>
->                          00
->                          00
->                        00
->                    00000
->000000000
->000000000
->000000000
->                     0000
-'''
-                  ]},
-    'smile': {'min': 0, 'max': 2, 'default': ':simple_smile:', 'code': ['''>
->          0      0
->          0      0
->1                        1
->  1                      1
->    1                  1
->       1111''']}
+    'thumb': {'min': 0, 'max': 1, 'default': ':thumbsup:', 'code': [
+        '> ' +
+        '\n>                          00' +
+        '\n>                          00' +
+        '\n>                        00' +
+        '\n>                    00000' +
+        '\n>000000000' +
+        '\n>000000000' +
+        '\n>000000000' +
+        '\n>                     0000\n>\n>'
+    ]},
+    'smile': {'min': 0, 'max': 2, 'default': ':simple_smile:', 'code': [
+        '> ' +
+        '\n>          0      0' +
+        '\n>          0      0' +
+        '\n>1                        1' +
+        '\n>  1                      1' +
+        '\n>    1                  1' +
+        '\n>       1111\n>\n>'
+    ]}
 }
