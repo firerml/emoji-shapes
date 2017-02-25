@@ -35,6 +35,7 @@ def make_shape(shape_name, emojis):
                 result += emojis[min(int(code_piece), max_index)]
             else:
                 result += code_piece
+    result += '\n_Posted using /artmoji_'
     return result
 
 
