@@ -18,6 +18,11 @@ CLIENT_SECRET = os.environ.get('ARTMOJI_CLIENT_SECRET', '')
 ERROR_MESSAGE = 'Oops! There was an error. You can email me at firerml (at) gmail (dot) com to report this bug.'
 
 
+@app.route('/')
+def index():
+    return 'Hello, world'
+
+
 @app.route('/oauth', methods=['GET'])
 def oauth():
     # Request and save user's auth token, which will be used to post on the user's behalf.
